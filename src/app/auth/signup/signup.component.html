@@ -1,0 +1,52 @@
+<section class="flex justify-center items-center h-screen">
+    <form class="space-y-4 w-full max-w-md" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field class="w-full" [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+            <mat-label>Email</mat-label>
+            <input 
+                type="email" 
+                matInput 
+                placeholder="Your email" 
+                ngModel 
+                name="email"
+                email
+                required
+                #emailInput="ngModel">
+                    @if (emailInput.hasError('required')) {
+                        <mat-error>Field must not be empty</mat-error>
+                    }
+                    @if (!emailInput.hasError('required') && emailInput.touched) {
+                        <mat-error>Email is invalid</mat-error>
+                    }
+        </mat-form-field>
+        <mat-form-field class="w-full" [floatLabel]="floatLabel()" hintLabel="At least 6 characters password">
+            <mat-label>Password</mat-label>
+            <input 
+                type="password" 
+                matInput placeholder="Your password" 
+                ngModel 
+                name="password"
+                required=""
+                minlength="6"
+                maxlength="10"
+                #pwInput="ngModel">
+                @if (pwInput.value?.length < 6) {
+                    <mat-hint align="end">{{pwInput.value?.length}}/6</mat-hint>
+                }
+                <mat-error>Need at least 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full" hintLabel="You must have at least 18 years">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [max]="maxDate" ngModel name="birthday" required>
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <mat-checkbox required ngModel name="agree">Please accept terms and conditions</mat-checkbox>
+
+        <!-- Botão -->
+         <!-- <div><button type="submit" mat-raised-button color="primary" [disabled]="!f.valid">Test Button</button></div> -->
+              <div class="example-button-row">
+      <button type="submit" [disabled]="!f.valid" mat-flat-button>Login</button>
+    </div>
+    </form>
+</section>

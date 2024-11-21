@@ -1,0 +1,41 @@
+<mat-toolbar class="bg-blue-600 text-white px-4">
+    <div class="flex items-center justify-between w-full bg-blue-600">
+        <div class="flex items-center justify-between w-full bg-blue-600 text-white">
+
+            <div class="md:hidden">
+                <div class="flex justify-start items-center" >
+                    <button 
+                        mat-icon-button
+                        (click)="onSideNavToggle()" 
+                        class="px-2 py-2 rounded"
+                    >
+                        <mat-icon class="text-white">menu</mat-icon>
+                    </button>
+                    <div class="text-xl font-bold">
+                        <a routerLink="/">LOGO</a>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="hidden md:flex w-full items-center justify-between">
+                <div class="text-xl font-bold">
+                  <a routerLink="/">LOGO</a>
+                </div>
+                <div class="flex space-x-6">
+                  <ng-container>
+                    @if (!isAuth) {
+                        <a routerLink="signup" class="hover:text-blue-200 transition-colors">Signup</a>
+                        <a routerLink="login" class="hover:text-blue-200 transition-colors">Login</a>
+                    }
+                  </ng-container>
+                  <ng-container >
+                    @if (isAuth) {
+                        <a routerLink="training" class="hover:text-blue-200 transition-colors">Training</a>
+                        <a routerLink="training" class="hover:text-blue-200 transition-colors" (click)="onLogout()">Logout</a>
+                    }
+                  </ng-container>
+                </div>
+              </div>
+        </div>
+    </div>
+</mat-toolbar> 

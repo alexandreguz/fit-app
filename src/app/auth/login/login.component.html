@@ -1,0 +1,15 @@
+<section class="flex justify-center items-center h-screen">
+  <form class="" [formGroup]="loginForm"  (ngSubmit)="handleSubmit()">
+    <mat-form-field class="w-full mb-3">
+      <input type="email" matInput placeholder="Email" formControlName="email">
+      <mat-error>Invalid email</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <input type="password" matInput placeholder="Password" formControlName="password"  >
+      <mat-error>Add your password</mat-error>
+    </mat-form-field>
+    <div class="example-button-row">
+      <button type="submit" mat-flat-button [disabled]="loginForm.invalid">Login</button>
+    </div>
+  </form>
+</section>
