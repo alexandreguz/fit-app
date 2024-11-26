@@ -13,7 +13,6 @@ import { TrainingService } from '../training.service';
   styleUrl: './current-training.component.css'
 })
 export class CurrentTrainingComponent implements OnInit{
-  @Output() trainingExit = new EventEmitter<void>()
   dialog = inject(MatDialog);
   progress = 0
   timer: number
@@ -29,6 +28,7 @@ export class CurrentTrainingComponent implements OnInit{
     this.timer = window.setInterval(() => {
       this.progress = this.progress + 1
       if (this.progress >= 100) {
+        this.trainingService.completeExercise();
         clearInterval(this.timer)
       }
     }, step)
@@ -41,7 +41,7 @@ export class CurrentTrainingComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.trainingExit.emit()
+        this.trainingService.cancelExercise(this.progress)
       } else {
         this.startOrResumeTimer()
       }
