@@ -1,23 +1,64 @@
-<section class="flex justify-center">
-    <mat-card class="w-full md:w-1/2 p-4">
-        <mat-card-title class="text-center">
-            Time to start a workout
+<!-- <section class="flex justify-center">
+    <form (ngSubmit)="onStartTraining(f)" #f="ngForm">
+        <mat-card class="w-auto md:w-1/2 p-4 mt-12">
+            <mat-card-title class="text-center">
+                Time to start a workout
+            </mat-card-title>
+            <mat-card-content class="text-center pt-4">
+                <mat-form-field>
+                    <mat-label> Select Type of training</mat-label>
+                    <mat-select placeholder="chose exercise" ngModel name="exercise" required> 
+                        @for (exercise of exercises; track exercise) {
+                        <mat-option [value]="exercise.id">{{exercise.name}}</mat-option>
+                      }
+                    </mat-select> 
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions class="justify-center">
+                <button type="submit" mat-button [disabled]="f.invalid">Start</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</section> -->
+
+
+<section class="flex justify-center mt-12">
+    <form
+      class="flex flex-col gap-4 p-6 bg-gray-100 rounded-lg shadow-md"
+      (ngSubmit)="onStartTraining(f)"
+      #f="ngForm"
+    >
+      <mat-card class="w-auto md:w-1/2 p-4  border rounded-lg">
+        <mat-card-title class="text-center text-lg font-bold text-blue-500 border-b-2 border-gray-300 pb-2">
+          Time to start a workout
         </mat-card-title>
         <mat-card-content class="text-center pt-4">
-            <mat-form-field>
-                <mat-label> Select Type of training</mat-label>
-                <mat-select>
-                    <!-- @for () { -->
-                    <mat-option value="crunches">{{"Crunches"}}</mat-option>
-                    <mat-option value="touch-toes">{{"Touch Toes"}}</mat-option>
-                    <mat-option value="side-lunges">{{"Side Lunges"}}</mat-option>
-                    <mat-option value="burpees">{{"Burpees"}}</mat-option>
-                    <!-- } -->
-                </mat-select>
-            </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Select Type of training</mat-label>
+            <mat-select
+              placeholder="chose exercise"
+              ngModel
+              name="exercise"
+              required
+            >
+              @for (exercise of exercises; track exercise) {
+              <mat-option [value]="exercise.id">{{ exercise.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
         </mat-card-content>
         <mat-card-actions class="justify-center">
-            <button type="submit" mat-button (click)="onStartTraining()">Start</button>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="px-4 py-2"
+            [disabled]="f.invalid"
+          >
+            Start
+          </button>
         </mat-card-actions>
-    </mat-card>
-</section>
+      </mat-card>
+    </form>
+  </section>
+  
