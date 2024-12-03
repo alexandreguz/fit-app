@@ -26,7 +26,7 @@ export class TrainingService {
     completeExercise() {
         this.exercises.push({...this.runnigExercise, date: new Date(), state: "completed"});
         this.runnigExercise = null;
-        this.exerciseChanged.next(null)
+        this.exerciseChanged.next(null);
     }
 
     cancelExercise(progress: number) {
@@ -36,10 +36,14 @@ export class TrainingService {
                             date: new Date(), 
                             state: "canceled"});
         this.runnigExercise = null;
-        this.exerciseChanged.next(null)
+        this.exerciseChanged.next(null);
     }
 
     getRunningExercise() {
-        return ({...this.runnigExercise})
+        return ({...this.runnigExercise});
+    }
+
+    getCompletedOrCancelledExercises(): Exercise[] {
+        return this.exercises.slice();
     }
 }
